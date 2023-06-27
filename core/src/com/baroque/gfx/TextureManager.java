@@ -11,7 +11,13 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class TextureManager extends AssetManager {
@@ -63,7 +69,6 @@ public class TextureManager extends AssetManager {
     }
 
     public static Map<String, Texture> textureMapsList = new HashMap<>();
-    public static Map<String, SpriteSheet> spriteSheetMapList = new HashMap<>();
     public static Animation<TextureRegion> textureRegionAnimation;
     public static Map<String, TextureAtlas> textureAtlases = new HashMap<>();
 

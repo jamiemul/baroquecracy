@@ -1,4 +1,4 @@
-package com.baroque.game;
+package com.baroque.scenes;
 
 public class LobbyScreen {
 }

@@ -2,6 +2,7 @@ package com.baroque.objects;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
@@ -14,12 +15,14 @@ public class Building {
     private String name;
 
     public Building(Boolean active, Vector2 location, String name) {
+        this.actionSlots = new ArrayList<>();
         this.active = active;
         this.location = location;
         this.name = name;
     }
 
     public Building(String name) {
+        this.actionSlots = new ArrayList<>();
         this.buildCost = new Resources();
         this.active = false;
         this.name = name;
@@ -74,6 +77,10 @@ public class Building {
         if (rewardFunction != null) {
             rewardFunction.applyReward(player);
         }
+    }
+
+    public void update() {
+
     }
 
 }

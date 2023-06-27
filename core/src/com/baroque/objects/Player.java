@@ -32,10 +32,13 @@ public class Player {
     public Player(String name, int num) {
         this.playerNum = num;
         this.playerName = name;
+        this.units = new ArrayList<>();
+        this.resources = new Resources();
         for (int i = 0; i < STARTER_WORKERS; i++) {
             this.units.add(new GameUnit(GameUnit.UnitType.WORKER));
         }
         this.units.add(new GameUnit(GameUnit.UnitType.WORKER));
+
         this.income = 0;
         this.harmony = 4;
         this.resources.gold = 1;
@@ -64,7 +67,6 @@ public class Player {
     public void increaseEnlightenment() {
         if (this.enlightenment < MAX_TRACK) {
             this.enlightenment += 1;
-            this.actions = PlayerManager.ENLIGHTENMENT_ACTIONS.get(this.enlightenment);
         }
     }
 

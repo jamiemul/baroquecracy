@@ -2,6 +2,7 @@ package com.baroque.game;
 
 import com.baroque.objects.Player;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,13 +10,10 @@ public class PlayerManager {
 
     public enum PLAYER_COLOR {RED, ORANGE, BLUE, BLACK, GREEN}
 
-    public final static List<Integer> FEALTY_CARDS = Arrays.asList(1, 2, 2, 3, 3, 4);
-    public final static List<Integer> ENLIGHTENMENT_ACTIONS = Arrays.asList(2, 3, 3, 4, 4, 5);
     List<Player> players;
-    Player host;
 
     public PlayerManager() {
-
+        players = new ArrayList<>();
     }
 
     public void addPlayer(String name) {

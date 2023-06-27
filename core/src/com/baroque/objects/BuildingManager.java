@@ -3,32 +3,76 @@ package com.baroque.objects;
 import com.badlogic.gdx.math.Vector2;
 import com.baroque.game.PlayerManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class BuildingManager {
     PlayerManager playerManager;
 
+    public List<Building> buildings;
+    public Building palace;
+    public Building forest;
+    public Building quarry;
+    public Building farm;
 
-    public Building palace = new Building(true, new Vector2(0, 0), "Palace");
-    public Building forest = new Building(true, new Vector2(0, 1), "Forest");
-    public Building quarry = new Building(true, new Vector2(0, 2), "Quarry");
-    public Building farm = new Building(true, new Vector2(0, 3), "Farm");
+    public Building market;
+    public Building printhouse;
+    public Building tavern;
+    public Building apothecary;
+    public Building church;
 
-    public Building market = new Building("Market");
-    public Building printhouse = new Building("Printhouse");
-    public Building tavern = new Building("Tavern");
-    public Building apothecary = new Building("Apothecary");
-    public Building church = new Building("Church");
-
-    public Building townSquare = new Building("Town Square");
-    public Building gallery = new Building("Gallery");
-    public Building library = new Building("Library");
-    public Building docks = new Building("Docks");
-    public Building theatre = new Building("Theatre");
+    public Building townSquare;
+    public Building gallery;
+    public Building library;
+    public Building docks;
+    public Building theatre;
 
     public BuildingManager(PlayerManager playerManager) {
         this.playerManager = playerManager;
+        this.buildings = new ArrayList<>();
+    }
+
+    public void startGame() {
+        createBuildings();
+        createBuildingMap();
         setResourceCostsAndRewards();
+        setActionSlots();
+    }
+
+    private void createBuildings() {
+        palace = new Building(true, new Vector2(0, 0), "Palace");
+        forest = new Building(true, new Vector2(0, 1), "Forest");
+        quarry = new Building(true, new Vector2(0, 2), "Quarry");
+        farm = new Building(true, new Vector2(0, 3), "Farm");
+        market = new Building("Market");
+        printhouse = new Building("Printhouse");
+        tavern = new Building("Tavern");
+        apothecary = new Building("Apothecary");
+        church = new Building("Church");
+        townSquare = new Building("Town Square");
+        gallery = new Building("Gallery");
+        library = new Building("Library");
+        docks = new Building("Docks");
+        theatre = new Building("Theatre");
+    }
+
+    private void createBuildingMap() {
+        buildings.add(palace);
+        buildings.add(forest);
+        buildings.add(quarry);
+        buildings.add(farm);
+        buildings.add(market);
+        buildings.add(printhouse);
+        buildings.add(tavern);
+        buildings.add(apothecary);
+        buildings.add(church);
+        buildings.add(townSquare);
+        buildings.add(gallery);
+        buildings.add(library);
+        buildings.add(docks);
+        buildings.add(theatre);
     }
 
     public void placeStarterBuildings() {
@@ -342,6 +386,14 @@ public class BuildingManager {
         gallery.buildCost.wood = 2;
         gallery.buildCost.pot = 1;
         gallery.setReward(player -> player.units.add(new GameUnit(GameUnit.UnitType.ARTIST)));
+    }
+
+    public void update() {
+        if (buildings != null) {
+            for (Building building : buildings) {
+                building.update();
+            }
+        }
     }
 
     public PlayerManager getPlayerManager() {

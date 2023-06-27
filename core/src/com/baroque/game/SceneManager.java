@@ -1,6 +1,7 @@
 package com.baroque.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -8,12 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.baroque.scenes.GameScene;
+import com.baroque.scenes.MainMenu;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SceneManager {
-
     private Map<GameController.GAME_STATE, Scene> scenes;
     private Scene currentScene;
 
@@ -24,10 +26,10 @@ public class SceneManager {
     private FitViewport viewport;
     Skin skin;
 
-    SceneManager(OrthographicCamera camera, SpriteBatch batch) {
+    SceneManager(OrthographicCamera camera, SpriteBatch batch, Input input) {
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
         stage = new Stage(viewport, batch);
-        Gdx.input.setInputProcessor(stage);
+        input.setInputProcessor(stage);
 
         table = new Table();
         table.setFillParent(true);
@@ -36,15 +38,15 @@ public class SceneManager {
 
         scenes = new HashMap<>();
         scenes.put(GameController.GAME_STATE.menu, new MainMenu(table, skin));
-        setScene(GameController.GAME_STATE.menu);
+        scenes.put(GameController.GAME_STATE.game, new GameScene(table, skin));
     }
 
-    public void setScene(GameController.GAME_STATE gameState) {
+    public void setScene(GameController gc) {
         if (currentScene != null) {
             currentScene.dispose(); // Dispose the previous scene if exists
         }
-        currentScene = scenes.get(gameState);
-        currentScene.create(); // Create the new scene
+        currentScene = scenes.get(gc.currentState);
+        currentScene.create(gc); // Create the new scene
     }
 
     public void update() {

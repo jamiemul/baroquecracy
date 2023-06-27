@@ -2,7 +2,7 @@ package com.baroque.game;
 
 
 public interface Scene {
-    void create();
+    void create(GameController gc);
 
     void update();
 

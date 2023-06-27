@@ -1,5 +1,6 @@
 package com.baroque.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActionSlot {
@@ -10,6 +11,8 @@ public class ActionSlot {
 
     public ActionSlot(String name) {
         this.name = name;
+        this.unitCosts = new ArrayList<>();
+        this.resourceCost = new Resources();
     }
 
     public ActionSlot(List<GameUnit.UnitType> units, Resources resourceCost) {

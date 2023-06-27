@@ -21,8 +21,8 @@ public class GameLoop extends ApplicationAdapter {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, WIDTH / 2.f, HEIGHT / 2.f);
-        gameController = new GameController(camera, batch);
         input = new InputManager(camera, gameController);
+        gameController = new GameController(camera, batch,  input);
     }
 
     @Override
